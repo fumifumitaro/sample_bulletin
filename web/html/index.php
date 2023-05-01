@@ -68,7 +68,8 @@ function createTableForBBS(PDO $pdo, $TABLE_NAME)
  */
 function fetchPosts(PDO $pdo, $TABLE_NAME)
 {
-    $sql = "SELECT * FROM $TABLE_NAME";
+    //TODO: SELECT文を完成させてください、id, name, date, commentを引き出すこと(もしくは全カラム)
+    $sql = "SELECT カラム FROM テーブル名";
     $stmt = $pdo->query($sql);
     $results = $stmt->fetchAll();
     foreach ($results as $row) {
@@ -108,9 +109,9 @@ function post(PDO $pdo, $TABLE_NAME, $name, $password, $comment)
 
     $date = date("Y-m-d H:i:s");
 
+    //TODO: INSERT文を書いてデータの書き込みを可能な状態にしてください。
     //新規投稿
-    $pdo->query("INSERT INTO $TABLE_NAME (name, comment, date, password) 
-        VALUES ('$name', '$comment', '$date', '$password')");
+    $pdo->query("INSERT文を書いてください　INSERT INTO テーブル名 VALUES ~~~");
 
     return "書き込み完了";
 }
@@ -131,9 +132,8 @@ function updatePost(PDO $pdo, string $TABLE_NAME, $name, $password, $comment, $i
         $password = "0000";
     }
 
-    $pdo->query
-    ("UPDATE $TABLE_NAME 
-        SET name='$name',comment='$comment',password='$password' WHERE id='$id'");
+    // TODO: UPDATE文を記述してください、name, comment, passwordの更新を行うこと。WhereでIDを条件式に加えること。
+    $pdo->query("UPDATE文を書いてください UPDATE ~~ SET ~~");
 
     return "編集完了";
 }
@@ -195,8 +195,9 @@ function deletePost(PDO $pdo, $TABLE_NAME, $id, $password)
         return "パスワードが不正です";
     }
 
+    // TODO: DELETE文を書いて削除機能を完成させてください。
     //パスワードがあっていれば削除
-    $sql = "delete from $TABLE_NAME where id=:id";
+    $sql = "DELETE文を書いてください";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
